@@ -23,7 +23,7 @@ test('loads and does not throw on missing timezone', async () => {
       <TimezoneSelect
         value={'Europe/Berlin'}
         timezones={{
-          'America/Ciudad_Juarez1': 'Missing Timezone',
+          'America/SmallTownMissing': 'Missing',
         }}
         onChange={e => e}
       />
