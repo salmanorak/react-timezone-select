@@ -19,7 +19,7 @@ const TimezoneSelect = ({
   onChange,
   labelStyle = 'original',
   timezones,
-  maxAbbrLength = 5,
+  maxAbbrLength = 4,
   ...props
 }: Props) => {
   if (!timezones) timezones = allTimezones
