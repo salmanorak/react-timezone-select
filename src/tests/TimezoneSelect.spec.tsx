@@ -3,7 +3,7 @@ import { render, findAllByText, fireEvent } from '@testing-library/react'
 import TimezoneSelect, { allTimezones } from '../../dist/index.js'
 
 // react-select react-testing-library jest example tests:
-// https://github.com/JedWatson/react-select/blob/master/packages/react-select/src/__tests__/Select.test.js
+// https://github.com/JedWatson/react-select/blob/master/packages/react-select/src/__tests__/Select.test.tsx
 
 test('loads and displays default timezone - passing string', async () => {
   const { getByText } = render(
@@ -15,6 +15,20 @@ test('loads and displays default timezone - passing string', async () => {
       /\(GMT\+[1-2]:00\) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna$/
     )
   ).toBeInTheDocument()
+})
+
+test('loads and does not throw on missing timezone', async () => {
+  expect(() =>
+    render(
+      <TimezoneSelect
+        value={'Europe/Berlin'}
+        timezones={{
+          'America/Ciudad_Juarez1': 'Missing Timezone',
+        }}
+        onChange={e => e}
+      />
+    )
+  ).not.toThrowError(/Please enter an IANA timezone id/i)
 })
 
 test('loads and displays default timezone - passing full object', async () => {
